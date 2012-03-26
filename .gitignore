@@ -1,0 +1,15 @@
+.bundle
+db/*.sqlite3
+db/schema.rb
+log/*.log
+tmp/
+.sass-cache/
+config/*.yml
+*.p12
+.DS_Store
+
+public/remote/site/*
+public/remote/store/*
+public/system/*
+
+.idea
