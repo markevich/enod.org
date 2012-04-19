@@ -9,23 +9,21 @@ set :branch, "master"
 
 set :git_shallow_clone, 1
 set :deploy_via, :checkout
-set :deploy_to, "~/www/enod.org"
+set :deploy_to, "~/web/enod.org"
 
 default_run_options[:pty] = true
 
-set :user, "slava.markeivch"
+set :user, "enod"
 set :use_sudo, false
 
-server "enod.org", :app, :web, :db, :primary => true
+server "guki.org", :app, :web, :db, :primary => true
 
 
 set :whenever_roles, :cron
-set :whenever_command, "bundle exec whenever"
 set :whenever_environment, defer { stage }
-require 'whenever/capistrano'
 
 after "deploy:update", 'deploy:symlink'
-#after "deploy:symlink", 'deploy:bundle'
+after "deploy:symlink", 'deploy:bundle'
 # after "deploy:bundle", 'deploy:whenever'
 after "deploy", "deploy:cleanup"
 
@@ -54,12 +52,12 @@ namespace :deploy do
     #run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
 
     #run "cd #{deploy_to}/current && bundle exec rake assets:clean"
-    run "cd #{deploy_to}/current && bundle exec rake assets:clean"
-    run "cd #{deploy_to}/current && bundle exec rake assets:precompile"
+    # run "cd #{deploy_to}/current && bundle exec rake assets:clean"
+    # run "cd #{deploy_to}/current && bundle exec rake assets:precompile"
 
-    run "rm -Rf #{shared_path}/assets/*"
-    run "mv #{deploy_to}/current/public/assets/* #{shared_path}/assets/"
-    run "rm -Rf #{deploy_to}/current/public/assets"
-    run "ln -nfs #{shared_path}/assets #{deploy_to}/current/public/assets"
+    # run "rm -Rf #{shared_path}/assets/*"
+    # run "mv #{deploy_to}/current/public/assets/* #{shared_path}/assets/"
+    # run "rm -Rf #{deploy_to}/current/public/assets"
+    # run "ln -nfs #{shared_path}/assets #{deploy_to}/current/public/assets"
   end
 end
