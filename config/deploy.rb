@@ -34,17 +34,14 @@ namespace :deploy do
     run "rm -Rf #{release_path}/public/remote"
     run "rm -Rf #{release_path}/public/assets"
     run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
-    run "ln -nfs /home/user/sites_media #{release_path}/public/remote"
 
     run "ln -nfs #{shared_path}/log #{release_path}/log"
     run "ln -nfs #{shared_path}/sockets #{release_path}/tmp/sockets"
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs #{shared_path}/config/active_api.yml #{release_path}/config/active_api.yml"
-    run "ln -nfs #{shared_path}/config/omniauth.yml #{release_path}/config/omniauth.yml"
   end
 
   task :bundle do
-    run "cd #{deploy_to}/current && bundle install"
+    run "cd #{release_path} && bundle install"
   end
 
   task :assets do
