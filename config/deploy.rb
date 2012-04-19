@@ -5,6 +5,7 @@ set :application, "enod.org"
 set :repository,  "git@github.com:EnOD/enod.org.git"
 
 set :rvm_ruby_string, 'ruby-1.9.2-p318@enod.org'   
+set :rvm_type, :user
 require "rvm/capistrano" 
 
 set :scm, :git
