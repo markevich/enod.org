@@ -4,6 +4,9 @@ $:.unshift(File.expand_path("~/.rvm/lib"))
 set :application, "enod.org"
 set :repository,  "git@github.com:EnOD/enod.org.git"
 
+set :rvm_ruby_string, 'ruby-1.9.2-p318@enod.org'   
+require "rvm/capistrano" 
+
 set :scm, :git
 set :branch, "master"
 
@@ -19,13 +22,10 @@ set :use_sudo, false
 server "guki.org", :app, :web, :db, :primary => true
 
 
-set :whenever_roles, :cron
-set :whenever_environment, defer { stage }
-
 after "deploy:update", 'deploy:symlink'
-after "deploy:symlink", 'deploy:bundle'
+after "deploy:symlink", 'deploy:cleanup'
 # after "deploy:bundle", 'deploy:whenever'
-after "deploy", "deploy:cleanup"
+after "deploy", "deploy:bundle"
 
 
 namespace :deploy do

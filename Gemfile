@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.1'
 
 # Bundle edge Rails instead:
-gem 'activeadmin'
+#gem 'activeadmin'
 
 gem 'mysql2'
 
@@ -27,7 +27,7 @@ gem 'jquery-rails'
 
 # Deploy with Capistrano
 gem 'capistrano'
-
+gem 'rvm-capistrano'
 
 group :test do
   gem 'database_cleaner'
@@ -38,7 +38,6 @@ group :test do
   gem 'email_spec'
   gem 'capybara'
   gem 'turn', '< 0.8.3'
-  gem 'spork'
 end
 
 group :development do
