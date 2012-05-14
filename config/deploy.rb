@@ -42,7 +42,7 @@ namespace :deploy do
   end
 
   task :bundle do
-    run "cd #{release_path} && bundle install"
+    run "cd #{release_path} && rvm use ruby-1.9.2@enod.org && bundle install"
   end
 
   task :assets do
