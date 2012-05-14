@@ -33,8 +33,6 @@ namespace :deploy do
   task :symlink do
     run "rm -Rf #{release_path}/log"
     run "rm -Rf #{release_path}/public/remote"
-    run "rm -Rf #{release_path}/public/assets"
-    run "ln -nfs #{shared_path}/assets #{release_path}/public/assets"
 
     run "ln -nfs #{shared_path}/log #{release_path}/log"
     run "ln -nfs #{shared_path}/sockets #{release_path}/tmp/sockets"
@@ -42,7 +40,7 @@ namespace :deploy do
   end
 
   task :bundle do
-    run "cd #{release_path} && rvm use ruby-1.9.2@enod.org && bundle install"
+    run "cd #{release_path} && bundle install"
   end
 
   task :assets do
